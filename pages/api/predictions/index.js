@@ -1,13 +1,16 @@
+const addBackgroundToPNG = require("lib/add-background-to-png");
+
 export default async function handler(req, res) {
+  if (req.body.mask) {
+    req.body.mask = addBackgroundToPNG(req.body.mask);
+  }
+
   const body = JSON.stringify({
     // Pinned to a specific version of Stable Diffusion, fetched from:
     // https://replicate.com/stability-ai/stable-diffusion
-    version:
-      "be04660a5b93ef2aff61e3668dedb4cbeb14941e62a3fd5998364a32d613e35e",
+    version: "be04660a5b93ef2aff61e3668dedb4cbeb14941e62a3fd5998364a32d613e35e",
     input: req.body,
-  })
-
-  console.log("body to POST to API", {body})
+  });
 
   const response = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
@@ -15,10 +18,8 @@ export default async function handler(req, res) {
       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
       "Content-Type": "application/json",
     },
-    body
+    body,
   });
-
-  console.log("response", {response})
 
   if (response.status !== 201) {
     let error = await response.json();
@@ -28,8 +29,6 @@ export default async function handler(req, res) {
   }
 
   const prediction = await response.json();
-
-  console.log("prediction data from API response", {prediction})
   res.statusCode = 201;
   res.end(JSON.stringify(prediction));
 }

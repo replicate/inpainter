@@ -14,10 +14,10 @@ export default function Home() {
 
     const body = {
       prompt: e.target.prompt.value,
-    }
+    };
 
     if (prediction) {
-      body.init_image = prediction.output[prediction.output.length - 1]
+      body.init_image = prediction.output[prediction.output.length - 1];
       if (canvasImage) {
         body.mask = canvasImage;
       }
@@ -28,7 +28,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
     prediction = await response.json();
 
@@ -59,23 +59,33 @@ export default function Home() {
         <title>Inpainter</title>
       </Head>
 
-      <main className="my-20 container mx-auto" style={{width: 512}}>
+      <main className="my-20 container mx-auto" style={{ width: 512 }}>
+        {error && <div>{error}</div>}
 
-      {error && <div>{error}</div>}
-
-      <div className="border border-hairline mb-5 bg-gray-200" style={{width: 512, height: 512}}>
-      <Canvas prediction={prediction} onDraw={setCanvasImage} />
-      </div>
-
-      <form onSubmit={handleSubmit}>
-        <div className="flex">
-          <input type="text" name="prompt" placeholder="Enter a prompt..." className="block w-full flex-grow rounded-l-md" />
-          <button className="bg-black text-white rounded-r-md inline-block px-4 flex-none" type="submit">Generate</button>
+        <div
+          className="border border-hairline mb-5 bg-gray-200"
+          style={{ width: 512, height: 512 }}
+        >
+          <Canvas prediction={prediction} onDraw={setCanvasImage} />
         </div>
-      </form>
 
+        <form onSubmit={handleSubmit}>
+          <div className="flex">
+            <input
+              type="text"
+              name="prompt"
+              placeholder="Enter a prompt..."
+              className="block w-full flex-grow rounded-l-md"
+            />
+            <button
+              className="bg-black text-white rounded-r-md inline-block px-4 flex-none"
+              type="submit"
+            >
+              Generate
+            </button>
+          </div>
+        </form>
       </main>
     </div>
   );
 }
-

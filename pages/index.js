@@ -57,19 +57,22 @@ export default function Home() {
     <div>
       <Head>
         <title>Inpainter</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <main className="my-20 container mx-auto" style={{ width: 512 }}>
+      <main className="container mx-auto p-5">
         {error && <div>{error}</div>}
 
-        <div
-          className="border border-hairline mb-5 bg-gray-200"
-          style={{ width: 512, height: 512 }}
-        >
-          <Canvas prediction={prediction} onDraw={setCanvasImage} />
+        <div className="border border-hairline max-w-[512px] mx-auto">
+          <div
+            className="bg-gray-200 relative max-h-[512px] w-full"
+            style={{ height: 0, paddingBottom: "100%" }}
+          >
+            <Canvas prediction={prediction} onDraw={setCanvasImage} />
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="py-5">
           <div className="flex">
             <input
               type="text"

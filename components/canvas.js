@@ -1,6 +1,8 @@
 import React from "react";
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import Spinner from "components/spinner";
+import html2canvas from "html2canvas";
+import Image from "next/image";
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -11,6 +13,11 @@ export default class Canvas extends React.Component {
 
   onChange = async () => {
     const paths = await this.canvas.current.exportPaths();
+
+    const $wrapper = document.getElementById("canvas-wrapper");
+    const options = { useCORS: true, allowTaint: true, backgroundColor: null };
+    const screenshot = await (await html2canvas($wrapper, options)).toDataURL();
+    console.log(screenshot);
 
     // only respond if there are paths to draw (don't want to send a blank canvas)
     if (paths.length) {
@@ -36,7 +43,8 @@ export default class Canvas extends React.Component {
     }
 
     return (
-      <div style={{ width: 512, height: 512 }}>
+      <div id="canvas-wrapper" style={{ width: 512, height: 512 }}>
+        <Image src="/marta.jpg" alt="Marta" width="100%" height="100%" />
         <ReactSketchCanvas
           ref={this.canvas}
           strokeWidth={60}

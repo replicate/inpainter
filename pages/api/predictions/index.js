@@ -1,6 +1,12 @@
 const addBackgroundToPNG = require("lib/add-background-to-png");
 
 export default async function handler(req, res) {
+  // remnove null and undefined values
+  req.body = Object.entries(req.body).reduce(
+    (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
+    {}
+  );
+
   if (req.body.mask) {
     req.body.mask = addBackgroundToPNG(req.body.mask);
   }

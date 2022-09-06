@@ -14,14 +14,12 @@ export default function Home() {
 
     const body = {
       prompt: e.target.prompt.value,
+      init_image:
+        prediction && prediction.output
+          ? prediction.output[prediction.output.length - 1]
+          : null,
+      mask: canvasImage ? canvasImage : null,
     };
-
-    if (prediction) {
-      body.init_image = prediction.output[prediction.output.length - 1];
-      if (canvasImage) {
-        body.mask = canvasImage;
-      }
-    }
 
     const response = await fetch("/api/predictions", {
       method: "POST",

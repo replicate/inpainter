@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 const samplePrompts = [
-  "an illustration of a taxi cab in the style of r crumb",
-  "a painting of fruit on a table in the style of Raimonds Staprans",
-  "a painting by Helen Frankenthaler",
-  "a painting by Alice Neels",
-  "a painting by Richard Diebenkorn",
-  "a painting by Cassi Namoda",
-  "a painting by Raimonds Staprans",
-  "a painting by Joseph Yoakum",
+  "a gentleman otter in a 19th century portrait",
+  "bowl of ramen in the style of a comic book",
+  "flower field drawn by Jean-Jacques Sempé",
+  "illustration of a taxi cab in the style of r crumb",
+  "multicolor hyperspace",
+  "painting of fruit on a table in the style of Raimonds Staprans",
+  "pencil sketch of robots playing poker",
+  "photo of an astronaut riding a horse",
 ];
 import sample from "lodash/sample";
 

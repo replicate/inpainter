@@ -21,7 +21,7 @@ export default function About() {
       </p>
 
       <video autoPlay loop muted style={{ width: "500px", height: "500px" }}>
-        <source src="/cherries-to-oranges.mp4" />
+        <source src="/cherries-oranges-bananas.mp4" />
       </video>
 
       {/* <ol className="list-decimal pl-5">

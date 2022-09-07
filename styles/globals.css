@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply bg-gray-100;
-}
-
 input {
   @apply border;
   @apply border-solid;

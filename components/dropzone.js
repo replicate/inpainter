@@ -13,7 +13,7 @@ export default function Dropzone(props) {
 
   return (
     <div
-      className="absolute z-50 flex w-full h-full text-gray-400 text-sm text-center cursor-pointer select-none w-full h-full"
+      className="absolute z-50 flex w-full h-full text-gray-500 text-sm text-center cursor-pointer select-none w-full h-full"
       {...getRootProps()}
     >
       <div className="m-auto">

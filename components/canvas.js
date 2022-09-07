@@ -43,17 +43,8 @@ export default class Canvas extends React.Component {
                 alt={"prediction" + index}
                 key={"prediction" + index}
                 layout="fill"
-                onLoad={(event) => {
-                  // TODO: THIS IS SUPPOSED TO MAKE IMAGES FADE IN, BUT IT DOESN'T WORK
-                  event.target.style.display = "block";
-                  event.target.classList.add(
-                    "animate-in",
-                    "fade-in",
-                    "duration-5000"
-                  );
-                }}
-                className={`absolute`}
-                style={{ zIndex: index, display: "none" }}
+                className="absolute animate-in fade-in"
+                style={{ zIndex: index }}
                 src={prediction.lastImage}
               />
             ))}

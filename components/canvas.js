@@ -56,7 +56,7 @@ export default class Canvas extends React.Component {
                       "duration-5000"
                     );
                   }}
-                  className={`absolute opacity-0`}
+                  className={`absolute`}
                   style={{ zIndex: index, display: "none" }}
                   src={prediction.lastImage}
                 />
@@ -65,7 +65,7 @@ export default class Canvas extends React.Component {
             {predictions.length === 0 && (
               <div className="flex h-full bg-white">
                 <div className="m-auto">
-                  <div className="px-8 animate-in zoom-in text-lg">
+                  <div className="px-8 text-lg">
                     <h1 className="text-center text-7xl pb-3">🎨</h1>
                     <p className="pb-5">
                       <strong>Inpainting</strong> is a process where damaged or
@@ -95,14 +95,15 @@ export default class Canvas extends React.Component {
             )}
 
             {predicting && (
-              <div className="flex h-full">
-                <div className="m-auto">
-                  <div className="p-4 bg-white text-center rounded-lg animate-in zoom-in">
-                    <Spinner />
-                    <p className="pt-3 opacity-30 text-center text-sm">
-                      {lastPrediction.status}
-                    </p>
-                  </div>
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{ zIndex: predictions.length + 100 }}
+              >
+                <div className="p-4 w-40 bg-white text-center rounded-lg animate-in zoom-in">
+                  <Spinner />
+                  <p className="pt-3 opacity-30 text-center text-sm">
+                    {lastPrediction.status}
+                  </p>
                 </div>
               </div>
             )}

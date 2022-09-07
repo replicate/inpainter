@@ -3,14 +3,20 @@ import { useDropzone } from "react-dropzone";
 
 export default function Dropzone(props) {
   const onDrop = useCallback((acceptedFiles) => {
-    console.log({ acceptedFiles });
     props.onImageDropped(acceptedFiles[0]);
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+  if (props.predictions.length) return null;
+
+  if (props.userUploadedImage) return null;
+
   return (
-    <div className="text-center border border-gray-300 text-gray-400 border-dashed px-4 py-8 text-sm cursor-pointer rounded-md select-none">
-      <div {...getRootProps()}>
+    <div
+      className="absolute z-50 flex w-full h-full text-gray-400 text-sm text-center cursor-pointer select-none w-full h-full"
+      {...getRootProps()}
+    >
+      <div className="m-auto">
         <input {...getInputProps()} />
         {isDragActive ? (
           <p>Drop the image here ...</p>

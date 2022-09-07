@@ -3,6 +3,8 @@ import Head from "next/head";
 import Canvas from "components/canvas";
 import PromptForm from "components/prompt-form";
 import Dropzone from "components/dropzone";
+import Download from "components/download";
+import { XCircle as StartOverIcon } from "lucide-react";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -56,11 +58,18 @@ export default function Home() {
       }
       setPredictions(predictions.concat([prediction]));
 
-      console.log(prediction.status);
       if (prediction.status === "succeeded") {
         setUserUploadedImage(null);
       }
     }
+  };
+
+  const startOver = async (e) => {
+    e.preventDefault();
+    setPredictions([]);
+    setError(null);
+    setCanvasImage(null);
+    setUserUploadedImage(null);
   };
 
   return (
@@ -73,9 +82,14 @@ export default function Home() {
       <main className="container mx-auto p-5">
         {error && <div>{error}</div>}
 
-        <div className="border border-hairline max-w-[512px] mx-auto">
+        <div className="border-hairline max-w-[512px] mx-auto relative">
+          <Dropzone
+            onImageDropped={setUserUploadedImage}
+            predictions={predictions}
+            userUploadedImage={userUploadedImage}
+          />
           <div
-            className="bg-gray-100 relative max-h-[512px] w-full"
+            className="bg-gray-50 relative max-h-[512px] w-full"
             style={{ height: 0, paddingBottom: "100%" }}
           >
             <Canvas
@@ -88,7 +102,20 @@ export default function Home() {
 
         <div className="max-w-[512px] mx-auto">
           <PromptForm onSubmit={handleSubmit} />
-          <Dropzone onImageDropped={setUserUploadedImage} />
+
+          <div className="text-center">
+            {((predictions.length > 0 &&
+              predictions[predictions.length - 1].output) ||
+              canvasImage ||
+              userUploadedImage) && (
+              <button className="lil-button" onClick={startOver}>
+                <StartOverIcon className="icon" />
+                Start over
+              </button>
+            )}
+
+            <Download predictions={predictions} />
+          </div>
         </div>
       </main>
     </div>

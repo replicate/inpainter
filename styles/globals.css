@@ -16,5 +16,22 @@ input {
 }
 
 .border-hairline {
-  @apply border-black border-opacity-10;
+  @apply border border-black border-opacity-10;
+}
+
+.lil-button {
+  @apply inline-block;
+  /* @apply border-hairline; */
+  @apply text-sm;
+  @apply text-gray-500;
+  @apply rounded-md;
+  @apply px-2 py-2;
+  @apply mx-2;
+}
+
+.icon {
+  @apply inline relative mr-1;
+  top: -0.1em;
+  width: 1.1em;
+  height: 1.1em;
 }

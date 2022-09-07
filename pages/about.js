@@ -29,8 +29,10 @@ export default function About() {
         </li>
       </ol>
 
-      <Link href="/" className="pb-5 text-center">
-        Try it out
+      <Link href="/">
+        <a className="py-3 block text-center bg-black text-white rounded-md mt-10">
+          Try it out
+        </a>
       </Link>
     </div>
   );

@@ -81,8 +81,8 @@ export default class Canvas extends React.Component {
                         Enter a text prompt below and hit &quot;Generate&quot;.
                       </li>
                       <li className="mb-2">
-                        After a few seconds, you'll see a generated image. Click
-                        and drag to erase unwanted parts of the image.
+                        After a few seconds, you&apos;ll see a generated image.
+                        Click and drag to erase unwanted parts of the image.
                       </li>
                       <li className="mb-2">
                         Refine your prompt (or leave it) and hit

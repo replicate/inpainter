@@ -24,15 +24,11 @@ export default function About() {
         to inpaint images right in your browser.
       </p>
 
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{ width: "500px", height: "500px" }}
-      >
-        <source src="/cherries-oranges-bananas.mp4" />
-      </video>
+      <Link href="/paint">
+        <video autoPlay loop muted playsInline clasName="w-full cursor-pointer">
+          <source src="/cherries-oranges-bananas.mp4" />
+        </video>
+      </Link>
 
       {/* <ol className="list-decimal pl-5">
         <li className="mb-2">

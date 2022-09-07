@@ -14,7 +14,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export default function Home() {
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
-  const [canvasImage, setCanvasImage] = useState(null);
+  const [maskImage, setMaskImage] = useState(null);
   const [userUploadedImage, setUserUploadedImage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -30,10 +30,10 @@ export default function Home() {
       init_image: userUploadedImage
         ? await readAsDataURL(userUploadedImage)
         : // only use previous prediction as init image if there's a mask
-        canvasImage
+        maskImage
         ? prevPredictionOutput
         : null,
-      mask: canvasImage,
+      mask: maskImage,
     };
 
     const response = await fetch("/api/predictions", {
@@ -74,7 +74,7 @@ export default function Home() {
     e.preventDefault();
     setPredictions([]);
     setError(null);
-    setCanvasImage(null);
+    setMaskImage(null);
     setUserUploadedImage(null);
   };
 
@@ -101,7 +101,7 @@ export default function Home() {
             <Canvas
               predictions={predictions}
               userUploadedImage={userUploadedImage}
-              onDraw={setCanvasImage}
+              onDraw={setMaskImage}
             />
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function Home() {
           <div className="text-center">
             {((predictions.length > 0 &&
               predictions[predictions.length - 1].output) ||
-              canvasImage ||
+              maskImage ||
               userUploadedImage) && (
               <button className="lil-button" onClick={startOver}>
                 <StartOverIcon className="icon" />

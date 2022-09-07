@@ -63,29 +63,30 @@ export default class Canvas extends React.Component {
               ))}
 
             {predictions.length === 0 && (
-              <div className="flex h-full">
+              <div className="flex h-full bg-white">
                 <div className="m-auto">
-                  <div className="py-4 px-8 rounded-lg animate-in zoom-in">
+                  <div className="px-8 animate-in zoom-in text-lg">
+                    <h1 className="text-center text-7xl pb-3">🎨</h1>
                     <p className="pb-5">
-                      <strong>Inpainting</strong> is a conservation process
-                      where damaged, deteriorated, or missing parts of an
-                      artwork are filled in to present a complete image. This is
-                      a browser-based inpainting demo using the Stable Diffusion
-                      generative machine learning model.
+                      <strong>Inpainting</strong> is a process where damaged or
+                      missing parts of an artwork are filled in to present a
+                      complete image. This demo uses the Stable Diffusion
+                      generative machine learning model to do image inpainting.
                     </p>
 
-                    <p className="pb-5">To get started:</p>
+                    <p className="pb-5">Try it out:</p>
 
                     <ol className="list-decimal pl-5">
-                      <li className="mb-3">
-                        Enter a prompt below and hit &quot;Generate&quot;.
+                      <li className="mb-2">
+                        Enter a text prompt below and hit &quot;Generate&quot;.
                       </li>
-                      <li className="mb-3">
+                      <li className="mb-2">
                         After a few seconds, you'll see a generated image. Click
                         and drag to erase unwanted parts of the image.
                       </li>
-                      <li className="mb-3">
-                        Refine your prompt or leave it as-is, and Generate again
+                      <li className="mb-2">
+                        Refine your prompt (or leave it) and hit
+                        &quot;Generate&quot; again
                       </li>
                     </ol>
                   </div>

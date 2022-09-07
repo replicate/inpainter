@@ -24,7 +24,13 @@ export default function About() {
         to inpaint images right in your browser.
       </p>
 
-      <video autoPlay loop muted style={{ width: "500px", height: "500px" }}>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{ width: "500px", height: "500px" }}
+      >
         <source src="/cherries-oranges-bananas.mp4" />
       </video>
 

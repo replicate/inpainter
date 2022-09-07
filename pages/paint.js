@@ -29,7 +29,10 @@ export default function Home() {
       prompt: e.target.prompt.value,
       init_image: userUploadedImage
         ? await readAsDataURL(userUploadedImage)
-        : prevPredictionOutput,
+        : // only use previous prediction as init image if there's a mask
+        canvasImage
+        ? prevPredictionOutput
+        : null,
       mask: canvasImage,
     };
 

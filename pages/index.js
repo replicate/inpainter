@@ -17,9 +17,9 @@ export default function About() {
         >
           Stable Diffusion
         </a>{" "}
-        machine learning model and {" "}
+        machine learning model and{" "}
         <a className="underline" href="https://replicate.com">
-          Replicate's API
+          Replicate&apos;s API
         </a>{" "}
         to inpaint images right in your browser.
       </p>

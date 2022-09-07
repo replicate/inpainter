@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Canvas from "components/canvas";
 import PromptForm from "components/prompt-form";
 import Dropzone from "components/dropzone";
 import Download from "components/download";
 import { XCircle as StartOverIcon } from "lucide-react";
+import { Code as CodeIcon } from "lucide-react";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -115,6 +117,17 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
+
+            <Link href="https://github.com/zeke/inpainter">
+              <a className="lil-button">
+                <CodeIcon
+                  className="icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+                View source
+              </a>
+            </Link>
           </div>
         </div>
       </main>

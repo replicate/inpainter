@@ -2,6 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Canvas from "components/canvas";
 import PromptForm from "components/prompt-form";
+import Dropzone from "components/dropzone";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -9,6 +10,7 @@ export default function Home() {
   const [predictions, setPredictions] = useState([]);
   const [error, setError] = useState(null);
   const [canvasImage, setCanvasImage] = useState(null);
+  const [userUploadedImage, setUserUploadedImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +20,16 @@ export default function Home() {
       ? prevPrediction.output[prevPrediction.output.length - 1]
       : null;
 
+    let userUploadedImageDataUrl;
+    if (userUploadedImage) {
+      userUploadedImageDataUrl = await readAsDataURL(userUploadedImage);
+    }
+
     const body = {
       prompt: e.target.prompt.value,
-      init_image: prevPredictionOutput,
+      init_image: userUploadedImageDataUrl
+        ? userUploadedImageDataUrl
+        : prevPredictionOutput,
       mask: canvasImage,
     };
 
@@ -51,6 +60,7 @@ export default function Home() {
         return;
       }
       setPredictions(predictions.concat([prediction]));
+      setUserUploadedImage(null);
     }
   };
 
@@ -63,9 +73,36 @@ export default function Home() {
 
       <main className="container mx-auto p-5">
         {error && <div>{error}</div>}
-        <Canvas predictions={predictions} onDraw={setCanvasImage} />
-        <PromptForm onSubmit={handleSubmit} />
+
+        <div className="border border-hairline max-w-[512px] mx-auto">
+          <div
+            className="bg-gray-100 relative max-h-[512px] w-full"
+            style={{ height: 0, paddingBottom: "100%" }}
+          >
+            <Canvas
+              predictions={predictions}
+              userUploadedImage={userUploadedImage}
+              onDraw={setCanvasImage}
+            />
+          </div>
+        </div>
+
+        <div className="max-w-[512px] mx-auto">
+          <PromptForm onSubmit={handleSubmit} />
+          <Dropzone onImage={setUserUploadedImage} />
+        </div>
       </main>
     </div>
   );
+}
+
+function readAsDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onerror = reject;
+    fr.onload = () => {
+      resolve(fr.result);
+    };
+    fr.readAsDataURL(file);
+  });
 }

@@ -11,6 +11,8 @@ export default async function handler(req, res) {
     req.body.mask = addBackgroundToPNG(req.body.mask);
   }
 
+  console.log("req.body", req.body);
+
   const body = JSON.stringify({
     // Pinned to a specific version of Stable Diffusion, fetched from:
     // https://replicate.com/stability-ai/stable-diffusion

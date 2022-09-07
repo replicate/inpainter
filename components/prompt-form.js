@@ -1,6 +1,6 @@
-import React from "react";
+import { useState } from "react";
 
-const prompts = [
+const samplePrompts = [
   "an illustration of a taxi cab in the style of r crumb",
   "a painting of fruit on a table in the style of Raimonds Staprans",
   "a painting by Helen Frankenthaler",
@@ -12,34 +12,31 @@ const prompts = [
 ];
 import sample from "lodash/sample";
 
-export default class PromptForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { prompt: sample(prompts) };
-  }
+export default function PromptForm(props) {
+  const [prompt] = useState(sample(samplePrompts));
+  const [image, setImage] = useState(null);
 
-  render() {
-    return (
-      <form
-        onSubmit={this.props.onSubmit}
-        className="py-5 animate-in fade-in duration-700"
-      >
-        <div className="flex">
-          <input
-            type="text"
-            defaultValue={this.state.prompt}
-            name="prompt"
-            placeholder="Enter a prompt..."
-            className="block w-full flex-grow rounded-l-md"
-          />
-          <button
-            className="bg-black text-white rounded-r-md inline-block px-4 flex-none"
-            type="submit"
-          >
-            Generate
-          </button>
-        </div>
-      </form>
-    );
-  }
+  return (
+    <form
+      onSubmit={props.onSubmit}
+      className="py-5 animate-in fade-in duration-700"
+    >
+      <div className="flex max-w-[512px]">
+        <input
+          type="text"
+          defaultValue={prompt}
+          name="prompt"
+          placeholder="Enter a prompt..."
+          className="block w-full flex-grow rounded-l-md"
+        />
+
+        <button
+          className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none"
+          type="submit"
+        >
+          Generate
+        </button>
+      </div>
+    </form>
+  );
 }

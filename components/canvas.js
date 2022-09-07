@@ -81,7 +81,7 @@ export default class Canvas extends React.Component {
             >
               <ReactSketchCanvas
                 ref={this.canvas}
-                strokeWidth={60}
+                strokeWidth={80}
                 strokeColor="black"
                 canvasColor="transparent"
                 onChange={this.onChange}

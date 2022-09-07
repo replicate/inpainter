@@ -40,7 +40,7 @@ export default function About() {
 
       <Link href="/paint">
         <a className="py-3 block text-center bg-black text-white rounded-md mt-10">
-          Try it out
+          Start painting
         </a>
       </Link>
     </div>

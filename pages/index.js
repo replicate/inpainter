@@ -20,15 +20,10 @@ export default function Home() {
       ? prevPrediction.output[prevPrediction.output.length - 1]
       : null;
 
-    let userUploadedImageDataUrl;
-    if (userUploadedImage) {
-      userUploadedImageDataUrl = await readAsDataURL(userUploadedImage);
-    }
-
     const body = {
       prompt: e.target.prompt.value,
-      init_image: userUploadedImageDataUrl
-        ? userUploadedImageDataUrl
+      init_image: userUploadedImage
+        ? await readAsDataURL(userUploadedImage)
         : prevPredictionOutput,
       mask: canvasImage,
     };
@@ -60,7 +55,11 @@ export default function Home() {
         return;
       }
       setPredictions(predictions.concat([prediction]));
-      setUserUploadedImage(null);
+
+      console.log(prediction.status);
+      if (prediction.status === "succeeded") {
+        setUserUploadedImage(null);
+      }
     }
   };
 
@@ -89,7 +88,7 @@ export default function Home() {
 
         <div className="max-w-[512px] mx-auto">
           <PromptForm onSubmit={handleSubmit} />
-          <Dropzone onImage={setUserUploadedImage} />
+          <Dropzone onImageDropped={setUserUploadedImage} />
         </div>
       </main>
     </div>

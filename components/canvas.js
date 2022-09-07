@@ -34,27 +34,29 @@ export default class Canvas extends React.Component {
     return (
       <div className="relative" style={{ width: 512, height: 512 }}>
         {/* PREDICTION IMAGES */}
-        {predictions
-          .filter((prediction) => prediction.output)
-          .map((prediction, index) => (
-            <Image
-              alt={"prediction" + index}
-              key={"prediction" + index}
-              layout="fill"
-              onLoad={(event) => {
-                // TODO: THIS IS SUPPOSED TO MAKE IMAGES FADE IN, BUT IT DOESN'T WORK
-                event.target.style.display = "block";
-                event.target.classList.add(
-                  "animate-in",
-                  "fade-in",
-                  "duration-5000"
-                );
-              }}
-              className={`absolute`}
-              style={{ zIndex: index, display: "none" }}
-              src={prediction.lastImage}
-            />
-          ))}
+
+        {!this.props.userUploadedImage &&
+          predictions
+            .filter((prediction) => prediction.output)
+            .map((prediction, index) => (
+              <Image
+                alt={"prediction" + index}
+                key={"prediction" + index}
+                layout="fill"
+                onLoad={(event) => {
+                  // TODO: THIS IS SUPPOSED TO MAKE IMAGES FADE IN, BUT IT DOESN'T WORK
+                  event.target.style.display = "block";
+                  event.target.classList.add(
+                    "animate-in",
+                    "fade-in",
+                    "duration-5000"
+                  );
+                }}
+                className={`absolute`}
+                style={{ zIndex: index, display: "none" }}
+                src={prediction.lastImage}
+              />
+            ))}
 
         {/* USER UPLOADED IMAGE */}
         {this.props.userUploadedImage && (

@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 export default function Dropzone(props) {
   const onDrop = useCallback((acceptedFiles) => {
     console.log({ acceptedFiles });
-    props.onImage(acceptedFiles[0]);
+    props.onImageDropped(acceptedFiles[0]);
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

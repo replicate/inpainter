@@ -117,15 +117,24 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
-
+          </div>
+          <div className="">
+            <Link href="https://replicate.com/stability-ai/stable-diffusion">
+              <a
+                target="_blank"
+                className="p-3 block text-sm text-center bg-black text-white rounded-md mt-10"
+              >
+                Run Stable Diffusion with an API on Replicate
+              </a>
+            </Link>
             <Link href="https://github.com/zeke/inpainter">
-              <a className="lil-button">
+              <a className="p-3 block text-sm text-center bg-black text-white rounded-md mt-5">
                 <CodeIcon
                   className="icon"
                   target="_blank"
                   rel="noopener noreferrer"
                 />
-                View source
+                View source on GitHub
               </a>
             </Link>
           </div>

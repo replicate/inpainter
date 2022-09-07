@@ -95,8 +95,8 @@ export default function Home() {
             userUploadedImage={userUploadedImage}
           />
           <div
-            className="bg-gray-50 relative max-h-[512px] w-full"
-            style={{ height: 0, paddingBottom: "100%" }}
+            className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
+            // style={{ height: 0, paddingBottom: "100%" }}
           >
             <Canvas
               predictions={predictions}

@@ -32,7 +32,7 @@ export default class Canvas extends React.Component {
     const lastPrediction = predictions[predictions.length - 1];
 
     return (
-      <div className="relative" style={{ width: 512, height: 512 }}>
+      <div className="relative w-full aspect-square">
         {/* PREDICTION IMAGES */}
 
         {!this.props.userUploadedImage &&

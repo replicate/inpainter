@@ -1,107 +1,39 @@
-import { useState } from "react";
-import Head from "next/head";
-import Canvas from "components/canvas";
-import PromptForm from "components/prompt-form";
-import Dropzone from "components/dropzone";
+import Link from "next/link";
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-export default function Home() {
-  const [predictions, setPredictions] = useState([]);
-  const [error, setError] = useState(null);
-  const [canvasImage, setCanvasImage] = useState(null);
-  const [userUploadedImage, setUserUploadedImage] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const prevPrediction = predictions[predictions.length - 1];
-    const prevPredictionOutput = prevPrediction?.output
-      ? prevPrediction.output[prevPrediction.output.length - 1]
-      : null;
-
-    const body = {
-      prompt: e.target.prompt.value,
-      init_image: userUploadedImage
-        ? await readAsDataURL(userUploadedImage)
-        : prevPredictionOutput,
-      mask: canvasImage,
-    };
-
-    const response = await fetch("/api/predictions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    const prediction = await response.json();
-
-    if (response.status !== 201) {
-      setError(prediction.detail);
-      return;
-    }
-    setPredictions(predictions.concat([prediction]));
-
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
-    ) {
-      await sleep(1000);
-      const response = await fetch("/api/predictions/" + prediction.id);
-      prediction = await response.json();
-      if (response.status !== 200) {
-        setError(prediction.detail);
-        return;
-      }
-      setPredictions(predictions.concat([prediction]));
-
-      console.log(prediction.status);
-      if (prediction.status === "succeeded") {
-        setUserUploadedImage(null);
-      }
-    }
-  };
-
+export default function About() {
   return (
-    <div>
-      <Head>
-        <title>Inpainter</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
+    <div className="max-w-[512px] mx-auto my-10 p-10 bg-white rounded-lg">
+      <h1 className="text-center text-7xl pb-3">🎨</h1>
+      <p className="pb-5">
+        <strong>Inpainting</strong> is a process where missing parts of an
+        artwork are filled in to present a complete image. This demo uses the{" "}
+        <a
+          className="underline"
+          href="https://replicate.com/stability-a/stable-diffusion"
+        >
+          Stable Diffusion
+        </a>{" "}
+        machine learning model to inpaint images.
+      </p>
 
-      <main className="container mx-auto p-5">
-        {error && <div>{error}</div>}
+      <ol className="list-decimal pl-5">
+        <li className="mb-2">
+          Enter a text prompt below and hit &quot;Generate&quot;.
+        </li>
+        <li className="mb-2">
+          After a few seconds, you&apos;ll see a generated image. Click and drag
+          to erase unwanted parts of the image.
+        </li>
+        <li className="mb-2">
+          Refine your prompt (or leave it) and hit &quot;Generate&quot; again
+        </li>
+      </ol>
 
-        <div className="border border-hairline max-w-[512px] mx-auto">
-          <div
-            className="bg-gray-100 relative max-h-[512px] w-full"
-            style={{ height: 0, paddingBottom: "100%" }}
-          >
-            <Canvas
-              predictions={predictions}
-              userUploadedImage={userUploadedImage}
-              onDraw={setCanvasImage}
-            />
-          </div>
-        </div>
-
-        <div className="max-w-[512px] mx-auto">
-          <PromptForm onSubmit={handleSubmit} />
-          <Dropzone onImageDropped={setUserUploadedImage} />
-        </div>
-      </main>
+      <Link href="/paint">
+        <a className="py-3 block text-center bg-black text-white rounded-md mt-10">
+          Try it out
+        </a>
+      </Link>
     </div>
   );
-}
-
-function readAsDataURL(file) {
-  return new Promise((resolve, reject) => {
-    const fr = new FileReader();
-    fr.onerror = reject;
-    fr.onload = () => {
-      resolve(fr.result);
-    };
-    fr.readAsDataURL(file);
-  });
 }

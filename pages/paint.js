@@ -7,6 +7,7 @@ import Dropzone from "components/dropzone";
 import Download from "components/download";
 import { XCircle as StartOverIcon } from "lucide-react";
 import { Code as CodeIcon } from "lucide-react";
+import { Rocket as RocketIcon } from "lucide-react";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -117,24 +118,20 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
-          </div>
-          <div className="">
             <Link href="https://replicate.com/stability-ai/stable-diffusion">
-              <a
-                target="_blank"
-                className="p-3 block text-sm text-center bg-black text-white rounded-md mt-10"
-              >
-                Run Stable Diffusion with an API on Replicate
+              <a target="_blank" className="lil-button">
+                <RocketIcon className="icon" />
+                Run with an API
               </a>
             </Link>
             <Link href="https://github.com/zeke/inpainter">
-              <a className="p-3 block text-sm text-center bg-black text-white rounded-md mt-5">
-                <CodeIcon
-                  className="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-                View source on GitHub
+              <a
+                className="lil-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <CodeIcon className="icon" />
+                View on GitHub
               </a>
             </Link>
           </div>

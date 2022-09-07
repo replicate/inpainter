@@ -21,8 +21,8 @@ input {
   @apply text-sm;
   @apply text-gray-500;
   @apply rounded-md;
-  @apply px-2 py-2;
-  @apply mx-2;
+  @apply py-2;
+  @apply mx-3;
 }
 
 .icon {

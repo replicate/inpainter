@@ -3,6 +3,12 @@ import React from "react";
 const prompts = [
   "an illustration of a taxi cab in the style of r crumb",
   "a painting of fruit on a table in the style of Raimonds Staprans",
+  "a painting by Helen Frankenthaler",
+  "a painting by Alice Neels",
+  "a painting by Richard Diebenkorn",
+  "a painting by Cassi Namoda",
+  "a painting by Raimonds Staprans",
+  "a painting by Joseph Yoakum",
 ];
 import sample from "lodash/sample";
 

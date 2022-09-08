@@ -82,6 +82,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Inpainting with Stable Diffusion &amp; Replicate</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <main className="container mx-auto p-5">

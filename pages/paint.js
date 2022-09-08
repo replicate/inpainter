@@ -123,7 +123,7 @@ export default function Home() {
             <Link href="https://replicate.com/stability-ai/stable-diffusion">
               <a target="_blank" className="lil-button">
                 <RocketIcon className="icon" />
-                Run with an API
+                Run Stable Diffusion with an API
               </a>
             </Link>
             <Link href="https://github.com/zeke/inpainter">
@@ -133,7 +133,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <CodeIcon className="icon" />
-                View on GitHub
+                See how it’s built on GitHub
               </a>
             </Link>
           </div>

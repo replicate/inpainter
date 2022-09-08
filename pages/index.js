@@ -6,6 +6,7 @@ export default function About() {
     <div className="max-w-[512px] mx-auto my-10 p-10 bg-white rounded-lg">
       <Head>
         <title>Inpainting with Stable Diffusion &amp; Replicate</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {/* <h1 className="text-center text-7xl pb-3">🎨</h1> */}
       <p className="py-5 text-lg">

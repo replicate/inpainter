@@ -1,13 +1,14 @@
+const API_HOST = process.env.REPLICATE_API_HOST || "https://api.replicate.com";
+
+console.log({ API_HOST });
+
 export default async function handler(req, res) {
-  const response = await fetch(
-    "https://api.replicate.com/v1/predictions/" + req.query.id,
-    {
-      headers: {
-        Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(`${API_HOST}/v1/predictions/${req.query.id}`, {
+    headers: {
+      Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+  });
   if (response.status !== 200) {
     let error = await response.json();
     res.statusCode = 500;

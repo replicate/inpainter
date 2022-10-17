@@ -19,7 +19,19 @@ https://user-images.githubusercontent.com/2289/188992670-3dc9db47-fb8e-45c1-85ee
 
 ## Development
 
-Make sure you have a recent version of Node.js installed, then:
+Prerequisites:
+
+1. Recent version of Node.js
+2. [Replicate API token](https://replicate.com/account)
+
+
+Set your Replicate API token in your environment:
+
+```
+REPLICATE_API_TOKEN=<your-token-here>
+```
+
+Then install dependencies and run the server:
 
 ```sh
 npm install

@@ -30,7 +30,7 @@ export default function About() {
       </p>
 
       <Link href="/paint">
-        <video autoPlay loop muted playsInline clasName="w-full cursor-pointer">
+        <video autoPlay loop muted playsInline className="w-full cursor-pointer">
           <source src="/cherries-oranges-bananas.mp4" />
         </video>
       </Link>

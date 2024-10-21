@@ -134,7 +134,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <CodeIcon className="icon" />
-                See how it's built on GitHub
+                See how it&apos;s built on GitHub
               </a>
             </Link>
           </div>

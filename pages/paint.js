@@ -88,15 +88,15 @@ export default function Home() {
       <main className="container mx-auto p-5">
         {error && <div>{error}</div>}
 
-        <div className="border-hairline max-w-[512px] mx-auto relative">
+        <div className="border-hairline max-w-[min(1024px,100vw-40px)] mx-auto relative">
           <Dropzone
             onImageDropped={setUserUploadedImage}
             predictions={predictions}
             userUploadedImage={userUploadedImage}
           />
           <div
-            className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
-            // style={{ height: 0, paddingBottom: "100%" }}
+            className="bg-gray-50 relative w-full flex items-stretch"
+            style={{ maxHeight: "min(1024px, 100vw - 40px)" }}
           >
             <Canvas
               predictions={predictions}
@@ -106,7 +106,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-[512px] mx-auto">
+        <div className="max-w-[min(1024px,100vw-40px)] mx-auto">
           <PromptForm onSubmit={handleSubmit} />
 
           <div className="text-center">
@@ -134,7 +134,7 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <CodeIcon className="icon" />
-                See how it’s built on GitHub
+                See how it's built on GitHub
               </a>
             </Link>
           </div>

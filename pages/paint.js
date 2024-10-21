@@ -22,7 +22,9 @@ export default function Home() {
 
     const prevPrediction = predictions[predictions.length - 1];
     const prevPredictionOutput = prevPrediction?.output
-      ? prevPrediction.output[prevPrediction.output.length - 1]
+      ? (Array.isArray(prevPrediction.output)
+        ? prevPrediction.output[prevPrediction.output.length - 1]
+        : prevPrediction.output)
       : null;
 
     const body = {

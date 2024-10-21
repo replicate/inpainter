@@ -22,9 +22,9 @@ export default class Canvas extends React.Component {
 
   render() {
     const predictions = this.props.predictions.map((prediction) => {
-      prediction.lastImage = prediction.output
+      prediction.lastImage = Array.isArray(prediction.output)
         ? prediction.output[prediction.output.length - 1]
-        : null;
+        : prediction.output;
       return prediction;
     });
 

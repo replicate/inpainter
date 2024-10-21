@@ -21,7 +21,7 @@ export default function PromptForm(props) {
       onSubmit={props.onSubmit}
       className="py-5 animate-in fade-in duration-700"
     >
-      <div className="flex max-w-[512px]">
+      <div className="flex max-w-[1024px]">
         <input
           type="text"
           defaultValue={prompt}

@@ -5,13 +5,12 @@ export default function About() {
   return (
     <div className="max-w-[512px] mx-auto p-10 bg-white rounded-lg">
       <Head>
-        <title>Inpainting with Stable Diffusion &amp; Replicate</title>
+        <title>Inpainting with AI, powered by Replicate</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <p className="pb-5 text-lg">
-        <strong>Inpainting</strong> is a process where missing parts of an
-        artwork are filled in to present a complete image. This{" "}
-        <a className="underline" href="https://github.com/zeke/inpainter">
+        <strong>Inpainting</strong> is the process of using AI image generation models to erase and repaint parts of existing images. This{" "}
+        <a className="underline" href="https://github.com/replicate/inpainter">
           open-source demo
         </a>{" "}
         uses the{" "}

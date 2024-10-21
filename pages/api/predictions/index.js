@@ -12,9 +12,9 @@ export default async function handler(req, res) {
   }
 
   const body = JSON.stringify({
-    // Pinned to a specific version of Stable Diffusion, fetched from:
-    // https://replicate.com/stability-ai/stable-diffusion
-    version: "be04660a5b93ef2aff61e3668dedb4cbeb14941e62a3fd5998364a32d613e35e",
+    // Pinned to a specific version of ideogram-v2-internal
+    // https://replicate.com/replicate/ideogram-v2-internal/versions
+    version: "8a288ea186ec2f8a49bac226e524e28462cc802e7981bc1c09a2f248de579b49",
     input: req.body,
   });
 

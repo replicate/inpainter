@@ -55,7 +55,7 @@ export default function Home() {
       prediction.status !== "succeeded" &&
       prediction.status !== "failed"
     ) {
-      await sleep(1000);
+      await sleep(200);
       const response = await fetch("/api/predictions/" + prediction.id);
       prediction = await response.json();
       if (response.status !== 200) {

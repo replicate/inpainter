@@ -86,7 +86,7 @@ export default function Home() {
       </Head>
 
       <main className="container mx-auto p-5">
-        {error && <div>{error}</div>}
+        
 
         <div className="border-hairline max-w-[min(1024px,100vw-40px)] mx-auto relative">
           <Dropzone
@@ -108,6 +108,8 @@ export default function Home() {
 
         <div className="max-w-[min(1024px,100vw-40px)] mx-auto">
           <PromptForm onSubmit={handleSubmit} />
+
+          {error && <div className="text-red-700 bg-red-50 p-3 rounded-md mb-5">{error}</div>}
 
           <div className="text-center">
             {((predictions.length > 0 &&

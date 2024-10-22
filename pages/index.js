@@ -10,7 +10,7 @@ export default function About() {
       </Head>
       <p className="pb-5 text-lg">
         <strong>Inpainting</strong> is the process of using AI image generation models to erase and repaint parts of existing images. This{" "}
-        <a className="underline" href="https://github.com/replicate/inpainter-private/tree/ideogram">
+        <a className="underline" href="https://github.com/replicate/inpainter">
           open-source demo
         </a>{" "}
         uses the{" "}

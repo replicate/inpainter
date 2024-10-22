@@ -103,7 +103,7 @@ export default function Home() {
           />
           <div
             className="bg-gray-50 relative w-full flex items-stretch"
-            style={{ maxHeight: "min(768px, 100vw - 40px)" }}
+            style={{ maxHeight: "min(768px, 100vw - 40px)", aspectRatio: "4 / 3" }}
           >
             <Canvas
               predictions={predictions}

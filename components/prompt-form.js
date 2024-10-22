@@ -32,8 +32,8 @@ export default function PromptForm(props) {
           name="model"
           className="bg-white border border-gray-300 border-l border-r-0 px-3 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300"
         >
-          <option value="ideogram-ai/ideogram-v2">Ideogram v2 (High Quality)</option>
           <option value="ideogram-ai/ideogram-v2-turbo">Ideogram v2 Turbo (Fast)</option>
+          <option value="ideogram-ai/ideogram-v2">Ideogram v2 (High Quality)</option>
         </select>
         <button
           className="bg-black text-white rounded-r-md text-sm font-medium px-4 py-2 flex-none"

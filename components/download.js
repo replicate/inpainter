@@ -8,8 +8,7 @@ export default function Download(props) {
 
   if (!lastPrediction.output) return null;
 
-  const lastImage = lastPrediction.output[lastPrediction.output.length - 1];
-
+  const lastImage = lastPrediction.output;
   return (
     <Link href={lastImage}>
       <a className="lil-button" target="_blank" rel="noopener noreferrer">

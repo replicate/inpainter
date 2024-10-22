@@ -29,6 +29,7 @@ export default function Home() {
 
     const body = {
       prompt: e.target.prompt.value,
+      model: e.target.model.value,
       image: userUploadedImage
         ? await readAsDataURL(userUploadedImage)
         : // only use previous prediction as init image if there's a mask

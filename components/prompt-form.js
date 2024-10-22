@@ -1,4 +1,5 @@
 import { useState } from "react";
+import sample from "lodash/sample";
 
 const samplePrompts = [
   "a gentleman otter in a 19th century portrait",
@@ -10,11 +11,9 @@ const samplePrompts = [
   "pencil sketch of robots playing poker",
   "photo of an astronaut riding a horse",
 ];
-import sample from "lodash/sample";
 
 export default function PromptForm(props) {
   const [prompt] = useState(sample(samplePrompts));
-  const [image, setImage] = useState(null);
 
   return (
     <form
@@ -27,11 +26,17 @@ export default function PromptForm(props) {
           defaultValue={prompt}
           name="prompt"
           placeholder="Enter a prompt..."
-          className="block w-full flex-grow rounded-l-md"
+          className="block w-full flex-grow rounded-l-md border-r-0"
         />
-
+        <select
+          name="model"
+          className="bg-white border border-gray-300 border-l border-r-0 px-3 py-2 text-sm font-medium text-gray-700 focus:outline-none focus:ring-0 focus:border-gray-300"
+        >
+          <option value="ideogram-ai/ideogram-v2">Ideogram v2 (High Quality)</option>
+          <option value="ideogram-ai/ideogram-v2-turbo">Ideogram v2 Turbo (Fast)</option>
+        </select>
         <button
-          className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none"
+          className="bg-black text-white rounded-r-md text-sm font-medium px-4 py-2 flex-none"
           type="submit"
         >
           Generate

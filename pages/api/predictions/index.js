@@ -11,11 +11,13 @@ export default async function handler(req, res) {
     req.body.mask = addBackgroundToPNG(req.body.mask);
   }
 
+  const modelVersion = req.body.model || "ideogram-ai/ideogram-v2";
+
   const body = JSON.stringify({
     input: req.body,
   });
 
-  const response = await fetch(`https://api.replicate.com/v1/models/ideogram-ai/ideogram-v2/predictions`, {
+  const response = await fetch(`https://api.replicate.com/v1/models/${modelVersion}/predictions`, {
     method: "POST",
     headers: {
       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,

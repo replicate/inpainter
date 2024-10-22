@@ -140,7 +140,7 @@ export default function Home() {
                 Run Ideogram v2 Turbo with an API
               </a>
             </Link>
-            <Link href="https://github.com/replicate/inpainter-private/tree/ideogram">
+            <Link href="https://github.com/replicate/inpainter">
               <a
                 className="lil-button"
                 target="_blank"

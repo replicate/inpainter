@@ -83,7 +83,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Inpainting with Stable Diffusion &amp; Replicate</title>
+        <title>Inpainting with Ideogram v2 &amp; Replicate</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
@@ -125,13 +125,19 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
-            <Link href="https://replicate.com/stability-ai/stable-diffusion">
+            <Link href="https://replicate.com/ideogram-ai/ideogram-v2">
               <a target="_blank" className="lil-button">
                 <RocketIcon className="icon" />
-                Run Stable Diffusion with an API
+                Run Ideogram v2 with an API
               </a>
             </Link>
-            <Link href="https://github.com/zeke/inpainter">
+            <Link href="https://replicate.com/ideogram-ai/ideogram-v2-turbo">
+              <a target="_blank" className="lil-button">
+                <RocketIcon className="icon" />
+                Run Ideogram v2 Turbo with an API
+              </a>
+            </Link>
+            <Link href="https://github.com/replicate/inpainter-private/tree/ideogram">
               <a
                 className="lil-button"
                 target="_blank"

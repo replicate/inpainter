@@ -89,7 +89,11 @@ export default function Home() {
       </Head>
 
       <main className="container mx-auto p-5">
-        
+
+        <div className="max-w-[min(1024px,100vw-40px)] mx-auto">
+          <PromptForm onSubmit={handleSubmit} />
+        </div>
+
 
         <div className="border-hairline max-w-[min(1024px,100vw-40px)] mx-auto relative">
           <Dropzone
@@ -99,7 +103,7 @@ export default function Home() {
           />
           <div
             className="bg-gray-50 relative w-full flex items-stretch"
-            style={{ maxHeight: "min(1024px, 100vw - 40px)" }}
+            style={{ maxHeight: "min(768px, 100vw - 40px)" }}
           >
             <Canvas
               predictions={predictions}
@@ -110,8 +114,6 @@ export default function Home() {
         </div>
 
         <div className="max-w-[min(1024px,100vw-40px)] mx-auto">
-          <PromptForm onSubmit={handleSubmit} />
-
           {error && <div className="text-red-700 bg-red-50 p-3 rounded-md mb-5">{error}</div>}
 
           <div className="text-center">

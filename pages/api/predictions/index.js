@@ -13,6 +13,8 @@ export default async function handler(req, res) {
 
   const modelVersion = req.body.model || "ideogram-ai/ideogram-v2";
 
+  req.body.aspect_ratio = "4:3";
+
   const body = JSON.stringify({
     input: req.body,
   });

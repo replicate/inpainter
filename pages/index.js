@@ -65,9 +65,6 @@ export default function About() {
       {!hasToken ? (
         <form onSubmit={handleTokenSubmit} className="mt-10">
           <div className="mb-4">
-            <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-2">
-              Replicate API Token
-            </label>
             <input
               type="text"
               id="token"

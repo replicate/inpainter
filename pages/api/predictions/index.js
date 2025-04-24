@@ -1,6 +1,14 @@
 const addBackgroundToPNG = require("lib/add-background-to-png");
 
 export default async function handler(req, res) {
+  // Check for API token in headers
+  const apiToken = req.headers['x-replicate-api-token'];
+  if (!apiToken) {
+    res.statusCode = 401;
+    res.end(JSON.stringify({ detail: "Missing Replicate API token" }));
+    return;
+  }
+
   // remove null and undefined values
   req.body = Object.entries(req.body).reduce(
     (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
@@ -22,7 +30,7 @@ export default async function handler(req, res) {
   const response = await fetch(`https://api.replicate.com/v1/models/${modelVersion}/predictions`, {
     method: "POST",
     headers: {
-      Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+      Authorization: `Token ${apiToken}`,
       "Content-Type": "application/json",
     },
     body,

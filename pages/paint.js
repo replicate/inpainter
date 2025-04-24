@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Canvas from "components/canvas";
@@ -16,9 +16,24 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [maskImage, setMaskImage] = useState(null);
   const [userUploadedImage, setUserUploadedImage] = useState(null);
+  const [apiToken, setApiToken] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("replicateApiToken");
+    if (!token) {
+      window.location.href = "/";
+      return;
+    }
+    setApiToken(token);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!apiToken) {
+      setError("Missing API token. Please go back to the homepage and enter your token.");
+      return;
+    }
 
     const prevPrediction = predictions[predictions.length - 1];
     const prevPredictionOutput = prevPrediction?.output
@@ -43,10 +58,11 @@ export default function Home() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-replicate-api-token": apiToken,
       },
       body: JSON.stringify(body),
     });
-    const prediction = await response.json();
+    let prediction = await response.json();
 
     if (response.status !== 201) {
       setError(prediction.detail);
@@ -59,13 +75,18 @@ export default function Home() {
       prediction.status !== "failed"
     ) {
       await sleep(200);
-      const response = await fetch("/api/predictions/" + prediction.id);
-      prediction = await response.json();
+      const response = await fetch(`/api/predictions/${prediction.id}`, {
+        headers: {
+          "x-replicate-api-token": apiToken,
+        },
+      });
+      const newPrediction = await response.json();
       if (response.status !== 200) {
-        setError(prediction.detail);
+        setError(newPrediction.detail);
         return;
       }
-      setPredictions(predictions.concat([prediction]));
+      setPredictions(predictions.concat([newPrediction]));
+      prediction = newPrediction;
 
       if (prediction.status === "succeeded") {
         setUserUploadedImage(null);
@@ -89,11 +110,9 @@ export default function Home() {
       </Head>
 
       <main className="container mx-auto p-5">
-
         <div className="max-w-[min(1024px,100vw-40px)] mx-auto">
           <PromptForm onSubmit={handleSubmit} />
         </div>
-
 
         <div className="border-hairline max-w-[min(1024px,100vw-40px)] mx-auto relative">
           <Dropzone
@@ -121,7 +140,7 @@ export default function Home() {
               predictions[predictions.length - 1].output) ||
               maskImage ||
               userUploadedImage) && (
-              <button className="lil-button" onClick={startOver}>
+              <button type="button" className="lil-button" onClick={startOver}>
                 <StartOverIcon className="icon" />
                 Start over
               </button>
@@ -129,19 +148,20 @@ export default function Home() {
 
             <Download predictions={predictions} />
             <Link href="https://replicate.com/ideogram-ai/ideogram-v2">
-              <a target="_blank" className="lil-button">
+              <a href="https://replicate.com/ideogram-ai/ideogram-v2" target="_blank" rel="noreferrer" className="lil-button">
                 <RocketIcon className="icon" />
                 Run Ideogram v2 with an API
               </a>
             </Link>
             <Link href="https://replicate.com/ideogram-ai/ideogram-v2-turbo">
-              <a target="_blank" className="lil-button">
+              <a href="https://replicate.com/ideogram-ai/ideogram-v2-turbo" target="_blank" rel="noreferrer" className="lil-button">
                 <RocketIcon className="icon" />
                 Run Ideogram v2 Turbo with an API
               </a>
             </Link>
             <Link href="https://github.com/replicate/inpainter">
               <a
+                href="https://github.com/replicate/inpainter"
                 className="lil-button"
                 target="_blank"
                 rel="noopener noreferrer"

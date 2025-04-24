@@ -1,7 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function About() {
+  const [apiToken, setApiToken] = useState("");
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("replicateApiToken");
+    if (token) {
+      setApiToken(token);
+      setHasToken(true);
+    }
+  }, []);
+
+  const handleTokenSubmit = (e) => {
+    e.preventDefault();
+    const token = e.target.token.value.trim();
+    if (token) {
+      localStorage.setItem("replicateApiToken", token);
+      setApiToken(token);
+      setHasToken(true);
+    }
+  };
+
   return (
     <div className="max-w-[512px] mx-auto p-10 bg-white rounded-lg">
       <Head>
@@ -40,11 +62,41 @@ export default function About() {
         </video>
       </Link>
 
-      <Link href="/paint">
-        <a className="py-3 block text-center bg-black text-white rounded-md mt-10">
-          Start painting
-        </a>
-      </Link>
+      {!hasToken ? (
+        <form onSubmit={handleTokenSubmit} className="mt-10">
+          <div className="mb-4">
+            <label htmlFor="token" className="block text-sm font-medium text-gray-700 mb-2">
+              Replicate API Token
+            </label>
+            <input
+              type="text"
+              id="token"
+              name="token"
+              placeholder="Enter your Replicate API token"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              required
+            />
+            <p className="mt-2 text-sm text-gray-500">
+              Get your API token from{" "}
+              <a href="https://replicate.com/account/api-tokens" className="underline" target="_blank" rel="noopener noreferrer">
+                Replicate
+              </a>
+            </p>
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 bg-black text-white rounded-md"
+          >
+            Save Token
+          </button>
+        </form>
+      ) : (
+        <Link href="/paint">
+          <a href="/paint" className="py-3 block text-center bg-black text-white rounded-md mt-10">
+            Start painting
+          </a>
+        </Link>
+      )}
     </div>
   );
 }

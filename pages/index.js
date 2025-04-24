@@ -87,11 +87,10 @@ export default function About() {
           </button>
         </form>
       ) : (
-        <Link 
-          href="/paint" 
-          className="block w-full py-3 bg-black text-white rounded-md mt-10 text-center"
-        >
-          Start painting
+        <Link href="/paint">
+          <button type="button" className="w-full py-3 bg-black text-white rounded-md mt-10">
+            Start painting
+          </button>
         </Link>
       )}
     </div>

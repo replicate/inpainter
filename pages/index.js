@@ -14,7 +14,8 @@ export default function About() {
 
   const handleTokenSubmit = (e) => {
     e.preventDefault();
-    const token = e.target.token.value.trim();
+    const formData = new FormData(e.target);
+    const token = formData.get('token').trim();
     if (token) {
       localStorage.setItem("replicateApiToken", token);
       setApiToken(token);

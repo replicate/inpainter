@@ -4,13 +4,11 @@ import { useState, useEffect } from "react";
 
 export default function About() {
   const [apiToken, setApiToken] = useState("");
-  const [hasToken, setHasToken] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("replicateApiToken");
     if (token) {
       setApiToken(token);
-      setHasToken(true);
     }
   }, []);
 
@@ -20,9 +18,10 @@ export default function About() {
     if (token) {
       localStorage.setItem("replicateApiToken", token);
       setApiToken(token);
-      setHasToken(true);
     }
   };
+
+  const hasToken = apiToken !== "";
 
   return (
     <div className="max-w-[512px] mx-auto p-10 bg-white rounded-lg">

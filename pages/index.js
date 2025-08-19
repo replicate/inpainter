@@ -55,13 +55,11 @@ export default function About() {
         </a>{" "}
         to inpaint images right in your browser.
       </p>
-
-      <Link href="/paint">
+      <Link href="/paint" legacyBehavior>
         <video autoPlay loop muted playsInline className="w-full cursor-pointer">
           <source src="/cherries-oranges-bananas.mp4" />
         </video>
       </Link>
-
       {!hasToken ? (
         <form onSubmit={handleTokenSubmit} className="mt-10">
           <div className="mb-4">
@@ -88,7 +86,7 @@ export default function About() {
           </button>
         </form>
       ) : (
-        <Link href="/paint">
+        <Link href="/paint" className="block" legacyBehavior>
           <button type="button" className="w-full py-3 bg-black text-white rounded-md mt-10">
             Start painting
           </button>

@@ -108,7 +108,6 @@ export default function Home() {
         <title>Inpainting with Ideogram v2 &amp; Replicate</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-
       <main className="container mx-auto p-5">
         <div className="max-w-[min(1024px,100vw-40px)] mx-auto">
           <PromptForm onSubmit={handleSubmit} />
@@ -147,28 +146,32 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
-            <Link href="https://replicate.com/ideogram-ai/ideogram-v2">
-              <a href="https://replicate.com/ideogram-ai/ideogram-v2" target="_blank" rel="noreferrer" className="lil-button">
-                <RocketIcon className="icon" />
-                Run Ideogram v2 with an API
-              </a>
+            <Link
+              href="https://replicate.com/ideogram-ai/ideogram-v2"
+              target="_blank"
+              rel="noreferrer"
+              className="lil-button">
+
+              <RocketIcon className="icon" />Run Ideogram v2 with an API
+                            
             </Link>
-            <Link href="https://replicate.com/ideogram-ai/ideogram-v2-turbo">
-              <a href="https://replicate.com/ideogram-ai/ideogram-v2-turbo" target="_blank" rel="noreferrer" className="lil-button">
-                <RocketIcon className="icon" />
-                Run Ideogram v2 Turbo with an API
-              </a>
+            <Link
+              href="https://replicate.com/ideogram-ai/ideogram-v2-turbo"
+              target="_blank"
+              rel="noreferrer"
+              className="lil-button">
+
+              <RocketIcon className="icon" />Run Ideogram v2 Turbo with an API
+                            
             </Link>
-            <Link href="https://github.com/replicate/inpainter">
-              <a
-                href="https://github.com/replicate/inpainter"
-                className="lil-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <CodeIcon className="icon" />
-                See how it&apos;s built on GitHub
-              </a>
+            <Link
+              href="https://github.com/replicate/inpainter"
+              className="lil-button"
+              target="_blank"
+              rel="noopener noreferrer">
+
+              <CodeIcon className="icon" />See how it's built on GitHub
+                            
             </Link>
           </div>
         </div>

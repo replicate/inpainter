@@ -10,11 +10,14 @@ export default function Download(props) {
 
   const lastImage = lastPrediction.output;
   return (
-    <Link href={lastImage}>
-      <a className="lil-button" target="_blank" rel="noopener noreferrer">
-        <DownloadIcon className="icon" />
-        Download
-      </a>
+    <Link
+      href={lastImage}
+      className="lil-button"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      <DownloadIcon className="icon" />Download
+            
     </Link>
   );
 }
